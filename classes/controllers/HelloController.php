@@ -21,4 +21,12 @@ class HelloController
 		$responseBody->write($content);
 		return $response;
 	}
+
+	public function helloWithTemplate(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+	{
+		$assign["name"] = "GitHub";
+		$twig = $this->container->get("view");
+		$response = $twig->render($response, "helloWithVals.html", $assign);
+		return $response;
+	}
 }
